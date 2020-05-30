@@ -21,8 +21,9 @@ Route::get('/admins/categories', 'CategoryController@index')->name('admin.catego
 Route::get('/admins/categories/create', 'CategoryController@create')->name('admin.category.create');
 Route::post('/admins/categories', 'CategoryController@store')->name('admin.category.store');
 Route::get('/admins/categories/{id}/edit', 'CategoryController@edit')->name('admin.category.edit');
-Route::put('/admins/categories/{id/update', 'CategoryController@update')->name('admin.category.update');
+Route::put('/admins/categories/{id}/update', 'CategoryController@update')->name('admin.category.update');
 Route::delete('/admins/categories/{id}/delete', 'CategoryController@delete')->name('admin.category.delete');
+Route::delete('/admins/categories/{id}/delete-ajax', 'CategoryController@deleteAjax')->name('admin.category.deleteAjax');
 
 Auth::routes();
 
