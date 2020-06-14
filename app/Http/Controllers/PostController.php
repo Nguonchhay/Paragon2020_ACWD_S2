@@ -36,4 +36,15 @@ class PostController extends Controller
     {
         return view('admins.posts.show');
     }
+
+    public function edit(Post $post)
+    {
+        //$this->authorize('edit-post', $post);
+//        if (!Auth::user()->can('editPost', $post)) {
+//            abort(403);
+//        }
+
+        dd($post->title);
+        return view('admins.posts.edit');
+    }
 }

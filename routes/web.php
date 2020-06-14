@@ -42,7 +42,8 @@ Route::group([
         Route::get('create', 'PostController@create')->name('admin.post.create');
         Route::post('', 'PostController@store')->name('admin.post.store');
         Route::get('{id}/show', 'PostController@show')->name('admin.post.show');
-        Route::get('{id}/edit', 'PostController@edit')->name('admin.post.edit');
+        Route::get('{post}/edit', 'PostController@edit')->name('admin.post.edit')
+            ->middleware('can:editPost,post');
         Route::put('{id}/update', 'PostController@update')->name('admin.post.update');
         Route::delete('{id}/delete', 'PostController@delete')->name('admin.post.delete');
         Route::delete('{id}/delete-ajax', 'PostController@deleteAjax')->name('admin.post.deleteAjax');

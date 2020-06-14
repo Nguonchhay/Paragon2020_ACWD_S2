@@ -26,7 +26,11 @@
                     <td>{{ $post->creator->name }}</td>
                     <td>
                         <a href="{{ route('admin.post.show', $post->id) }}">Show</a> |
-                        <a href="{{ route('admin.post.edit', $post->id) }}">Edit</a> |
+
+                        @can('editPost', $post)
+                            <a href="{{ route('admin.post.edit', $post->id) }}">Edit</a> |
+                        @endcan
+
                         @if(empty($post->category))
                             <a href="#">Reasign Category</a>
                         @endif
