@@ -9,6 +9,58 @@ use Validator;
 
 class CategoryAPIController extends Controller
 {
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Get(
+     *     path="/categories",
+     *     summary="Category list",
+     *     tags={"Category"},
+     *     description="Category list",
+     *     produces={"application/json"},
+     *
+     *     @SWG\Parameter(
+     *          name="name",
+     *          description="name",
+     *          type="string",
+     *          required=false,
+     *          in="formData"
+     *     ),
+     *
+     *     @SWG\Response(
+     *      response=200,
+     *      description="Category list",
+     *
+     *      @SWG\Schema(
+     *        type="object",
+     *        @SWG\Property(
+     *           property="success",
+     *           type="boolean"
+     *        ),
+     *        @SWG\Property(
+     *          property="data",
+     *          type="object",
+     *          @SWG\Property(
+     *            property="category",
+     *            type="array",
+     *            @SWG\Items(ref="#/definitions/Category")
+     *          ),
+     *        ),
+     *        @SWG\Property(
+     *          property="message",
+     *          type="string"
+     *        )
+     *     )
+     *   ),
+     *
+     *     @SWG\Response(
+     *          response=500,
+     *          description="Server error"
+     *     )
+     * )
+     */
     public function index(Request $request)
     {
         if ($request->has('name')) {
@@ -24,6 +76,62 @@ class CategoryAPIController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Post(
+     *     path="/categories",
+     *     summary="Create new category",
+     *     tags={"Category"},
+     *     description="Create new category",
+     *     produces={"application/json"},
+     *
+     *     @SWG\Parameter(
+     *          name="name",
+     *          description="name",
+     *          type="string",
+     *          required=true,
+     *          in="formData"
+     *     ),
+     *
+     *     @SWG\Response(
+     *      response=200,
+     *      description="Category was stored successfully.",
+     *
+     *      @SWG\Schema(
+     *        type="object",
+     *        @SWG\Property(
+     *           property="success",
+     *           type="boolean"
+     *        ),
+     *        @SWG\Property(
+     *          property="data",
+     *          type="object",
+     *          @SWG\Property(
+     *            property="category",
+     *            type="array",
+     *            @SWG\Items(ref="#/definitions/Category")
+     *          ),
+     *        ),
+     *        @SWG\Property(
+     *          property="message",
+     *          type="string"
+     *        )
+     *     )
+     *   ),
+     *
+     *     @SWG\Response(
+     *          response=400,
+     *          description="Missing required field"
+     *     ),
+     *
+     *     @SWG\Response(
+     *          response=500,
+     *          description="Server Error"
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
